@@ -9,12 +9,16 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ActionsComponent } from './actions/actions.component';
 import { DropdownStyleActionsDirective } from './dropdown-style-actions.directive';
+import { OptionTemplateDirective } from './option-template.directive';
+import { CustomOptionComponent } from './custom-option/custom-option.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ActionsComponent,
-    DropdownStyleActionsDirective
+    DropdownStyleActionsDirective,
+    OptionTemplateDirective,
+    CustomOptionComponent,
   ],
   imports: [
     BrowserModule,
