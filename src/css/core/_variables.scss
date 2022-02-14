@@ -1,0 +1,156 @@
+/**************
+Colors
+**************/
+
+// Blue:
+$color-primary: #317AC1;
+// Orange-red:
+$color-accent: #F25831;
+// Amber
+$color-warning: #ebaf25;
+// Dark-blue:
+$color-secondary: #152845;
+// Main body color
+$color-text: #373D45;
+$color-text-contrast: #fff;
+// Other colors
+$color-bg: #fff;
+$color-light-blue-info: #e9eff9;
+$color-bg-main: #f0f2f5;
+$color-bg-panel: #f7f8fa;
+$color-primary-alternative: #6b99e6;
+$color-progress: #009900;
+$color-progress-bg: #80cc99;
+$color-success:#7ebd38;
+// border for bg-panel: darken($color-border, 2%);
+$color-accent-alternative: #ff4934;
+$color-accent-alternative-bg: #f7eff0;
+//
+$color-border: #dedfe5;
+//
+$color-icons: #797c7f;
+$color-icons-top-menu: #B5BBC6;
+$color-button-pure-icon: #98a1af;
+$color-arrow: #646f7e;
+//
+$color-subheader: #a2a9b8;
+$color-nav-links: #808DA2;
+//
+$color-checkbox-label: #3b3f46;
+// Color for disabled checkbox label: lighten($color-checkbox-label, 54%);
+$color-input-placeholder: lighten(#555, 15%);
+$color-input-text: #555;
+$color-input-border: #aeafb5;
+//
+$color-filter-names: #4d4d4e;
+//
+$color-chips-text: #bfc0c6;
+$color-chips-border: #cdced3;
+//
+$color-empty-text: #7b7b7b;
+// Button default colors/
+$color-button-default: #5e5f61;
+$color-button-disabled: #e3e4e5;
+$color-button-disabled-text: #c8c9cb;
+$color-bg-button-default: #ecedef;
+$color-bg-hover-button-default: #d3d5d8;
+//
+// Readiness colors
+$readiness-black:#373d45;
+$readiness-blue:#2F85B8;
+$readiness-turquoise: #47d1d1;
+$readiness-red:#f56056;
+$readiness-brown: #997654;
+$readiness-pink:#e274ab;
+$readiness-amber:#ebaf25;
+$readiness-orange:#e27b36;
+$readiness-purple:#ba5eba;
+$readiness-green:#7ebd38;
+$readiness-grey:#808b99;
+$readiness-silver:#c6cbd2;
+//
+// Compliance colors
+$compliance-unknown:#808b99;
+$compliance-red:#f56056;
+$compliance-amber:#ebaf25;
+$compliance-green:#7ebd38;
+$compliance-none:#c6cbd2;
+//
+// Lifecycle status colors
+$lifecycle-status-replacement-due: #ebaf25;
+$lifecycle-status-on-order: #7ebd38;
+$lifecycle-status-in-stock: #7ebd38;
+$lifecycle-status-in-use: #7ebd38;
+$lifecycle-status-retired: #f56056;
+//
+// Rationalisation colors
+$rationalisation-forwardpath: #ebaf25;
+$rationalisation-keep: #7ebd38;
+$rationalisation-retire: #f56056;
+$rationalisation-uncategorised:#2f85b8;
+//
+// Boolean colors
+$boolean-true:#7ebd38;
+$boolean-false:#f56056;
+
+/**************
+Status colors (old mark-up)
+**************/
+
+$status-red: $readiness-red;
+$status-blue: $readiness-blue;
+$status-lightblue: $readiness-turquoise;
+$status-brown:$readiness-brown;
+$status-purple: $readiness-purple;
+$status-unknown: $readiness-grey;
+$status-outofscope: $readiness-black;
+$status-green: $readiness-green;
+$status-grey: $readiness-grey;
+$status-amber:$readiness-amber;
+$status-orange:$readiness-orange;
+$status-notapplicable: $readiness-silver;
+$status-forwardpath: $rationalisation-forwardpath;
+$status-keep: $rationalisation-keep;
+//
+
+/**************
+Buttons
+**************/
+
+$height-button: 30px;
+$height-button-small: 21px;
+$height-subheader-button: 24px;
+$border-radius-button: 2px;
+
+/**************
+Border-radius
+**************/
+
+$border-radius: 2px;
+
+/**************
+Font-size
+**************/
+
+// Base font size and line height
+$font-size: 13px;
+$line-height: 1.4;
+
+/**************
+Media Breakpoints
+**************/
+
+$media-notebook: 1600px;
+$media-netbook: 1280px;
+$media-tablet-big: 1024px;
+$media-tablet-landscape: 992px;
+$media-tablet: 768px;
+$media-mobile-landscape: 568px;
+$media-mobile: 480px;
+
+/**************
+Heights
+**************/
+
+$height-toptools: 37px;
+$height-toptools-button: 25px;

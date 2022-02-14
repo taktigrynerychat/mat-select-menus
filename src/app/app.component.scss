@@ -9,4 +9,15 @@
 
 .container__sidenav{
   width: 200px;
+  padding: 0 10px;
 }
+
+.select-styled.cdk-overlay-pane {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden !important;
+  padding-bottom: 5px !important;
+  z-index: 5 !important;
+}
+
