@@ -1,9 +1,10 @@
 <mat-sidenav-container class="container">
   <mat-sidenav mode="side" opened class="container__sidenav">
 
-    <mtest-actions [data]="data">
+    <mtest-actions [data]="data" (onOptionSelection)="onActionSelection($event)">
       <mtest-custom-option *optionTemplate="'sort'; let option" [data]="option.value"></mtest-custom-option>
       <span *optionTemplate="'group'; let option">😀&nbsp;{{ option.value }}</span>
+      <mark *optionTemplate="'filter'; let option">{{ option.value }}</mark>
     </mtest-actions>
 
   </mat-sidenav>

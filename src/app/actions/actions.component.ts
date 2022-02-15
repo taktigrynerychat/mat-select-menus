@@ -2,15 +2,22 @@ import {
   ChangeDetectionStrategy,
   Component,
   ContentChildren,
+  EventEmitter,
   Input,
   OnChanges,
   OnInit,
+  Output,
   QueryList,
   SimpleChanges,
   ViewEncapsulation,
 } from '@angular/core';
 import { map, Observable, startWith } from 'rxjs';
 import { OptionTemplateDirective } from '../option-template.directive';
+import { IOption, ISelectWithOptions, SelectOptionEvent } from './actions.entity';
+
+type ISelectedOption<T> = {
+  selected: IOption<T>
+}
 
 @Component({
   selector: 'mtest-actions',
@@ -19,25 +26,23 @@ import { OptionTemplateDirective } from '../option-template.directive';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ActionsComponent implements OnInit, OnChanges {
+export class ActionsComponent<T> implements OnInit, OnChanges {
   @Input()
-  data: any[];
+  public data: ISelectWithOptions<T, ISelectedOption<T>>[];
+
+  @Output()
+  public onOptionSelection: EventEmitter<SelectOptionEvent<T>> = new EventEmitter();
 
   @ContentChildren(OptionTemplateDirective)
-  private readonly _options: QueryList<OptionTemplateDirective> = new QueryList<OptionTemplateDirective>();
+  private readonly _options: QueryList<OptionTemplateDirective<IOption<T>>> = new QueryList<OptionTemplateDirective<IOption<T>>>();
 
-  public options$: Observable<Record<string, OptionTemplateDirective>>;
-
-  onOptionSelection(item: any, event: any): void {
-    item.selected = event;
-    console.log(item.type, event);
-  }
+  public options$: Observable<Record<string, OptionTemplateDirective<IOption<T>>>>;
 
   public ngOnChanges(changes: SimpleChanges): void {
     if (changes['data']?.currentValue) {
       this.data.forEach(item => {
         if (item.selectedOptionId) {
-          item.selected = item.options.find((o: any) => o.id === item.selectedOptionId);
+          item.selected = item.options.find((o: IOption<T>) => o.id === item.selectedOptionId);
         } else if (!item.selected) {
           item.selected = item.options[0];
         }
@@ -49,8 +54,8 @@ export class ActionsComponent implements OnInit, OnChanges {
     this.options$ = this._options.changes.pipe(
       startWith(null),
       map(() =>
-        this._options.reduce<Record<string, OptionTemplateDirective>>(
-          (record: Record<string, OptionTemplateDirective>, item: OptionTemplateDirective) => ({
+        this._options.reduce<Record<string, OptionTemplateDirective<IOption<T>>>>(
+          (record: Record<string, OptionTemplateDirective<IOption<T>>>, item: OptionTemplateDirective<IOption<T>>) => ({
             ...record,
             [item.optionTemplateName]: item,
           }),
@@ -60,5 +65,13 @@ export class ActionsComponent implements OnInit, OnChanges {
     );
   }
 
+  public onSelection(selectItem: ISelectWithOptions<T, ISelectedOption<T>>, selectedOption: IOption<T>): void {
+    selectItem.selected = selectedOption;
+
+    this.onOptionSelection.emit({
+      type: selectItem.type,
+      value: selectedOption,
+    })
+  }
 
 }

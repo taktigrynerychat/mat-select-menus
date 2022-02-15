@@ -1,13 +1,13 @@
 <ng-container *ngIf="options$ | async as optionsMetadata">
 <!--  <div [dropDownStyleActions]="true" class="styleSelectDropdownFilters">-->
     <ng-container *ngFor="let item of data">
-      <mat-form-field floatLabel="always" style="width: 100%;">
-        <mat-label>{{ item.type }}</mat-label>
-        <mat-select panelClass="select-styled-actions-lists" [value]="item.selected" (valueChange)="onOptionSelection(item, $event)">
+      <mat-form-field style="width: 100%;">
+        <mat-label>{{ item.type | uppercase }}</mat-label>
+        <mat-select panelClass="select-styled-actions-lists" [value]="item.selected" (valueChange)="onSelection(item, $event)">
           <mat-select-trigger>{{ item.selected?.value }}</mat-select-trigger>
           <ng-container *ngFor="let option of item.options">
-            <mat-option [id]="option.id" [value]="option">
-              <ng-container *ngTemplateOutlet="optionsMetadata[item.type]?.template || defaultTemplate; context:{$implicit: option} "></ng-container>
+            <mat-option [id]="'' + option.id" [value]="option">
+              <ng-container *ngTemplateOutlet="optionsMetadata[item.type]?.template || defaultTemplate; context:{ $implicit: option } "></ng-container>
               <ng-template #defaultTemplate>
                 <span>{{ option.value }}</span>
               </ng-template>

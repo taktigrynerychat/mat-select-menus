@@ -1,15 +1,17 @@
 import { Directive, Inject, Input, TemplateRef } from '@angular/core';
 
+export type OptionTemplateContext<T> = { option: T };
+
 @Directive({
   selector: '[optionTemplate]',
 })
-export class OptionTemplateDirective<T = any> {
+export class OptionTemplateDirective<T> {
 
   @Input('optionTemplate')
-  optionTemplateName: string = '';
+  public optionTemplateName: string = '';
 
   constructor(
-    @Inject(TemplateRef) public readonly template: TemplateRef<{ option: T }>
+    @Inject(TemplateRef) public readonly template: TemplateRef<OptionTemplateContext<T>>,
   ) {
   }
 }
