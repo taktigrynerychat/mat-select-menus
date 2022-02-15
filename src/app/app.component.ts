@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IOption, ISelectWithOptions, SelectOptionEvent } from './actions/actions.entity';
+import { MenuOption, MenuWithOptions, MenuOptionEvent } from './actions/menus-with-options.entity';
 
 @Component({
   selector: 'mtest-root',
@@ -9,11 +9,11 @@ import { IOption, ISelectWithOptions, SelectOptionEvent } from './actions/action
 export class AppComponent {
   title = 'material-testing-project';
 
-  public onActionSelection(event: SelectOptionEvent): void {
+  public onActionSelection(event: MenuOptionEvent): void {
     console.log(event);
   }
 
-  public data: ISelectWithOptions<{ kek: string }>[] = [
+  public data: MenuWithOptions<{ kek: string }>[] = [
     {
       type: 'filter',
       options: [

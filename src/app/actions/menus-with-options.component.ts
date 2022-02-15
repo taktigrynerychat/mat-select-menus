@@ -13,36 +13,36 @@ import {
 } from '@angular/core';
 import { map, Observable, startWith } from 'rxjs';
 import { OptionTemplateDirective } from '../option-template.directive';
-import { IOption, ISelectWithOptions, SelectOptionEvent } from './actions.entity';
+import { MenuOption, MenuWithOptions, MenuOptionEvent } from './menus-with-options.entity';
 
-type ISelectedOption<T> = {
-  selected: IOption<T>
+type SelectedMenuOption<T> = {
+  selected: MenuOption<T>
 }
 
 @Component({
-  selector: 'mtest-actions',
-  templateUrl: './actions.component.html',
-  styleUrls: ['./actions.component.scss'],
+  selector: 'mtest-menus-with-options',
+  templateUrl: './menus-with-options.component.html',
+  styleUrls: ['./menus-with-options.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ActionsComponent<T> implements OnInit, OnChanges {
+export class MenusWithOptionsComponent<T> implements OnInit, OnChanges {
   @Input()
-  public data: ISelectWithOptions<T, ISelectedOption<T>>[];
+  public data: MenuWithOptions<T, SelectedMenuOption<T>>[];
 
   @Output()
-  public onOptionSelection: EventEmitter<SelectOptionEvent<T>> = new EventEmitter();
+  public onOptionSelection: EventEmitter<MenuOptionEvent<T>> = new EventEmitter();
 
   @ContentChildren(OptionTemplateDirective)
-  private readonly _options: QueryList<OptionTemplateDirective<IOption<T>>> = new QueryList<OptionTemplateDirective<IOption<T>>>();
+  private readonly _options: QueryList<OptionTemplateDirective<MenuOption<T>>> = new QueryList<OptionTemplateDirective<MenuOption<T>>>();
 
-  public options$: Observable<Record<string, OptionTemplateDirective<IOption<T>>>>;
+  public options$: Observable<Record<string, OptionTemplateDirective<MenuOption<T>>>>;
 
   public ngOnChanges(changes: SimpleChanges): void {
     if (changes['data']?.currentValue) {
       this.data.forEach(item => {
         if (item.selectedOptionId) {
-          item.selected = item.options.find((o: IOption<T>) => o.id === item.selectedOptionId);
+          item.selected = item.options.find((o: MenuOption<T>) => o.id === item.selectedOptionId);
         } else if (!item.selected) {
           item.selected = item.options[0];
         }
@@ -54,8 +54,8 @@ export class ActionsComponent<T> implements OnInit, OnChanges {
     this.options$ = this._options.changes.pipe(
       startWith(null),
       map(() =>
-        this._options.reduce<Record<string, OptionTemplateDirective<IOption<T>>>>(
-          (record: Record<string, OptionTemplateDirective<IOption<T>>>, item: OptionTemplateDirective<IOption<T>>) => ({
+        this._options.reduce<Record<string, OptionTemplateDirective<MenuOption<T>>>>(
+          (record: Record<string, OptionTemplateDirective<MenuOption<T>>>, item: OptionTemplateDirective<MenuOption<T>>) => ({
             ...record,
             [item.optionTemplateName]: item,
           }),
@@ -65,7 +65,7 @@ export class ActionsComponent<T> implements OnInit, OnChanges {
     );
   }
 
-  public onSelection(selectItem: ISelectWithOptions<T, ISelectedOption<T>>, selectedOption: IOption<T>): void {
+  public onSelection(selectItem: MenuWithOptions<T, SelectedMenuOption<T>>, selectedOption: MenuOption<T>): void {
     selectItem.selected = selectedOption;
 
     this.onOptionSelection.emit({
