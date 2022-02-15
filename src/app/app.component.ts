@@ -10,25 +10,25 @@ export class AppComponent {
 
   public data = [
     {
-      type: 'first',
+      type: 'filter',
       options: [
-        {id: 1, text: 'bla bla'},
-        {id: 2, text: 'hello'},
+        {id: 1, value: 'All Lists'},
       ],
     },
     {
-      type: 'second',
+      type: 'sort',
       options: [
-        {id: 1, text: 'second'},
-        {id: 1, text: 'options'},
+        {id: 1, value: 'By Created Date'},
       ],
     },
     {
-      type: 'default',
+      type: 'group',
+      selectedOptionId: 3,
       options: [
-        {id: 1, text: 'just'},
-        {id: 2, text: 'default'},
-        {id: 2, text: 'options'},
+        {id: 1, value: 'No Grouping'},
+        {id: 2, value: 'By Tag'},
+        {id: 3, value: 'By Owner'},
+        {id: 4, value: 'By Project'},
       ],
     },
   ];

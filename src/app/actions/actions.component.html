@@ -1,32 +1,35 @@
-<!--<div [dropDownStyleActions]="true" class="styleSelectDropdownFilters">-->
-<!--  <mat-form-field style="width: 100%" floatLabel="never">-->
-<!--    <mat-label>-->
-<!--      <span>filtering</span>-->
-<!--    </mat-label>-->
-<!--   <mat-select panelClass="select-styled-actions-lists">-->
-<!--     <mat-option>First option</mat-option>-->
-<!--   </mat-select>-->
-<!--  </mat-form-field>-->
-
-<!--  <mat-form-field style="width: 100%" floatLabel="never">-->
-<!--    <mat-label>-->
-<!--      <span>filtering</span>-->
-<!--    </mat-label>-->
-<!--    <mat-select panelClass="select-styled-actions-lists">-->
-<!--      <mat-option>First option</mat-option>-->
-<!--    </mat-select>-->
-<!--  </mat-form-field>-->
-<!--</div>-->
-<ng-container *ngIf="actions$ | async as actionsMetadata">
-  <ng-container *ngFor="let item of data; let last = last">
-    <b>{{ item.type}}</b>
-    <ng-container *ngFor="let option of item.options; let index = index">
-      <ng-container *ngTemplateOutlet="actionsMetadata[item.type]?.template || defaultTemplate; context:{$implicit: option} "></ng-container>
-      <ng-template #defaultTemplate>
-        <div>{{ option.text }}</div>
-      </ng-template>
+<ng-container *ngIf="options$ | async as optionsMetadata">
+<!--  <div [dropDownStyleActions]="true" class="styleSelectDropdownFilters">-->
+    <ng-container *ngFor="let item of data">
+      <mat-form-field floatLabel="always" style="width: 100%;">
+        <mat-label>{{ item.type }}</mat-label>
+        <mat-select panelClass="select-styled-actions-lists" [value]="item.selected" (valueChange)="onOptionSelection(item, $event)">
+          <mat-select-trigger>{{ item.selected?.value }}</mat-select-trigger>
+          <ng-container *ngFor="let option of item.options">
+            <mat-option [id]="option.id" [value]="option">
+              <ng-container *ngTemplateOutlet="optionsMetadata[item.type]?.template || defaultTemplate; context:{$implicit: option} "></ng-container>
+              <ng-template #defaultTemplate>
+                <span>{{ option.value }}</span>
+              </ng-template>
+            </mat-option>
+          </ng-container>
+        </mat-select>
+      </mat-form-field>
     </ng-container>
-    <hr *ngIf="!last">
-  </ng-container>
+<!--  </div>-->
 </ng-container>
+
+
+<!--<ng-container *ngIf="actions$ | async as actionsMetadata">-->
+<!--  <ng-container *ngFor="let item of data; let last = last">-->
+<!--    <b>{{ item.type}}</b>-->
+<!--    <ng-container *ngFor="let option of item.options; let index = index">-->
+<!--      <ng-container *ngTemplateOutlet="actionsMetadata[item.type]?.template || defaultTemplate; context:{$implicit: option} "></ng-container>-->
+<!--      <ng-template #defaultTemplate>-->
+<!--        <div>{{ option.text }}</div>-->
+<!--      </ng-template>-->
+<!--    </ng-container>-->
+<!--    <hr *ngIf="!last">-->
+<!--  </ng-container>-->
+<!--</ng-container>-->
 

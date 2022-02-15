@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { MatOptionModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { BrowserModule } from '@angular/platform-browser';
@@ -27,6 +28,7 @@ import { CustomOptionComponent } from './custom-option/custom-option.component';
     MatFormFieldModule,
     MatOptionModule,
     MatSelectModule,
+    MatIconModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -2,7 +2,8 @@
   <mat-sidenav mode="side" opened class="container__sidenav">
 
     <mtest-actions [data]="data">
-      <mtest-custom-option *optionTemplate="'second'; let option" [data]="option.text"></mtest-custom-option>
+      <mtest-custom-option *optionTemplate="'sort'; let option" [data]="option.value"></mtest-custom-option>
+      <span *optionTemplate="'group'; let option">😀&nbsp;{{ option.value }}</span>
     </mtest-actions>
 
   </mat-sidenav>
