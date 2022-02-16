@@ -6,6 +6,7 @@ Component for displaying menus and selected options. Implemented using `mat-sele
 <mtest-menus-with-options [data]="data" (onOptionSelection)="onActionSelection($event)"></mtest-menus-with-options>
 
 // The example with customized options for 'sort' and 'filter' menus:
+// Use *optionTemplate directive in the content of the component to assign the template to a propper menu options
 <mtest-menus-with-options [data]="data" (onOptionSelection)="onActionSelection($event)">
   <mtest-custom-option *optionTemplate="'sort'; let option" [data]="option.value"></mtest-custom-option>
   <mark *optionTemplate="'filter'; let option">{{ option.value }}</mark>
