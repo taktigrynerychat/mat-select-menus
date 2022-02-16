@@ -1,27 +1,44 @@
-# MaterialTestingProject
+# MatSelectMenus
+Component for displaying menus and selected options. Implemented using `mat-select` and a custom structural directive `optionTemplate`.
+## Usage examples:
+```html
+// Usage example:
+<mtest-menus-with-options [data]="data" (onOptionSelection)="onActionSelection($event)"></mtest-menus-with-options>
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.2.
+// The example with customized options for 'sort' and 'filter' menus:
+<mtest-menus-with-options [data]="data" (onOptionSelection)="onActionSelection($event)">
+  <mtest-custom-option *optionTemplate="'sort'; let option" [data]="option.value"></mtest-custom-option>
+  <mark *optionTemplate="'filter'; let option">{{ option.value }}</mark>
+</mtest-menus-with-options>
+```
 
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```ts
+// Data sample: 
+public data: MenuWithOptions[] = [
+    {
+      type: 'filter',
+      options: [
+        {id: 1, value: 'All Lists'},
+        {id: 2, value: 'Some Lists'},
+      ],
+    },
+    {
+      type: 'sort',
+      options: [
+        {id: 1, value: 'By Created Date'},
+        {id: 2, value: 'By Last Logon Date'},
+        {id: 3, value: 'By Items Count'},
+      ],
+    },
+    {
+      type: 'group',
+      selectedOptionId: 3,
+      options: [
+        {id: 1, value: 'No Grouping'},
+        {id: 2, value: 'By Tag'},
+        {id: 3, value: 'By Owner'},
+        {id: 4, value: 'By Project'},
+      ],
+    },
+  ];
+```
